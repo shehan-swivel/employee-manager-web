@@ -19,6 +19,7 @@ import { useMemo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import RoundedButton from "./RoundedButton";
+import SpinnerIcon from "./SpinnerIcon";
 
 type employeeFormProps = {
   isEdit: boolean;
@@ -172,7 +173,7 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: employeeFormProps) =>
 
             <Box display="flex" justifyContent="flex-end">
               <RoundedButton type="submit" variant="contained" disabled={isSubmitting} sx={{ mt: 3, width: 100 }}>
-                {buttonLabel}
+                {isSubmitting ? <SpinnerIcon /> : buttonLabel}
               </RoundedButton>
             </Box>
           </Box>

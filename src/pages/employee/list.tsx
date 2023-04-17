@@ -5,6 +5,7 @@ import RoundedButton from "@/components/RoundedButton";
 import SortButton from "@/components/SortButton";
 import useAppDispatch from "@/hooks/useAppDispatch";
 import useAppSelector from "@/hooks/useAppSelector";
+import useDebounce from "@/hooks/useDebounce";
 import { wrapper } from "@/store";
 import { getEmployees } from "@/store/slices/employeeSlice";
 import AppsIcon from "@mui/icons-material/Apps";
@@ -12,8 +13,7 @@ import ExpandLessTwoToneIcon from "@mui/icons-material/ExpandLessTwoTone";
 import ExpandMoreTwoToneIcon from "@mui/icons-material/ExpandMoreTwoTone";
 import FilterAltTwoToneIcon from "@mui/icons-material/FilterAltTwoTone";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { Avatar, Collapse, Fab, Typography, useTheme } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Avatar, Box, Collapse, Fab, Typography, useTheme } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
@@ -23,7 +23,7 @@ const EmployeeHome = () => {
   const dispatch = useAppDispatch();
   const employees = useAppSelector((state) => state.employees.all.data);
   const query = useAppSelector((state) => state.employees.query);
-  const { firstName, lastName, email, gender, phoneNumber, order, orderBy } = query;
+  const debouncedQuery = useDebounce(query, 300);
 
   const [isListView, setIsListView] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
@@ -49,10 +49,9 @@ const EmployeeHome = () => {
   }, [query]);
 
   useEffect(() => {
-    // If changed sorting parameters, fetch sorted data from the server
-    dispatch(getEmployees({ firstName, lastName, email, gender, phoneNumber, orderBy, order }));
+    dispatch(getEmployees(debouncedQuery));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [firstName, lastName, email, gender, phoneNumber, orderBy, order]);
+  }, [debouncedQuery]);
 
   return (
     <>
