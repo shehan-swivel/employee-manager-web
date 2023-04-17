@@ -6,6 +6,8 @@ const PREFIX = "/employees";
 export const employeeService = {
   getEmployees,
   createEmployee,
+  getEmployeeById,
+  updateEmployee,
 };
 
 function getEmployees(queryParams: EmployeeQuery) {
@@ -15,4 +17,12 @@ function getEmployees(queryParams: EmployeeQuery) {
 
 function createEmployee(data: Employee) {
   return apiService.post(`${PREFIX}`, data);
+}
+
+function getEmployeeById(id: string) {
+  return apiService.get(`${PREFIX}/${id}`);
+}
+
+function updateEmployee(id: string, data: Employee) {
+  return apiService.put(`${PREFIX}/${id}`, data);
 }
