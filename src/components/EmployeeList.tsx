@@ -1,5 +1,5 @@
 import { Employee, Gender, TableHeaderCell } from "@/types";
-import { DEFAULT_IMAGE, GENDER } from "@/utils/enums";
+import { DEFAULT_IMAGE, GENDER } from "@/constants";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { useRouter } from "next/router";

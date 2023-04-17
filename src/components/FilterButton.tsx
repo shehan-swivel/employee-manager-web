@@ -2,7 +2,7 @@ import useAppDispatch from "@/hooks/useAppDispatch";
 import useAppSelector from "@/hooks/useAppSelector";
 import { updateQuery } from "@/store/slices/employeeSlice";
 import { EmployeeQuery } from "@/types";
-import { GENDER } from "@/utils/enums";
+import { GENDER } from "@/constants";
 import FilterAltTwoToneIcon from "@mui/icons-material/FilterAltTwoTone";
 import {
   Avatar,
@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import { ChangeEvent, MouseEvent, useMemo, useState } from "react";
 import RoundedButton from "./RoundedButton";
+import { blue } from "@mui/material/colors";
 
 const FilterBar = () => {
   const dispatch = useAppDispatch();
@@ -59,9 +60,7 @@ const FilterBar = () => {
   return (
     <Box>
       <RoundedButton
-        color="secondary"
-        // variant={filtersCount ? "contained" : "outlined"}
-        variant="contained"
+        variant="outlined"
         startIcon={<FilterAltTwoToneIcon />}
         endIcon={<FilterButtonEndIcon count={filtersCount} />}
         onClick={handleClick}
@@ -71,6 +70,7 @@ const FilterBar = () => {
       <Popover
         open={open}
         anchorEl={anchorEl}
+        marginThreshold={140}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
@@ -93,6 +93,7 @@ const FilterBar = () => {
                 size="small"
                 value={firstName}
                 fullWidth
+                placeholder="Search..."
                 onChange={(e) => handleOnChange(e, "firstName")}
               />
             </Grid>
@@ -152,6 +153,10 @@ const FilterBar = () => {
               </FormControl>
             </Grid>
           </Grid>
+
+          <Button variant="contained" fullWidth sx={{ mt: 3 }}>
+            Apply Filters
+          </Button>
         </Box>
       </Popover>
     </Box>
@@ -163,8 +168,8 @@ const FilterButtonEndIcon = ({ count }: { count: number }) => {
 
   if (count) {
     return (
-      <Avatar sx={{ width: 20, height: 20, bgcolor: theme.palette.common.white }}>
-        <Typography variant="button" sx={{ color: theme.palette.primary.main }}>
+      <Avatar sx={{ width: 20, height: 20, bgcolor: theme.palette.primary.main }}>
+        <Typography variant="button" sx={{ color: theme.palette.common.white }}>
           {count}
         </Typography>
       </Avatar>

@@ -1,5 +1,5 @@
+import { DEFAULT_IMAGE, GENDER } from "@/constants";
 import { Employee, Gender } from "@/types";
-import { DEFAULT_IMAGE, GENDER } from "@/utils/enums";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Card, CardContent, CardMedia, Fab, Typography } from "@mui/material";

@@ -55,7 +55,7 @@ const EmployeeHome = () => {
       <Box display="flex" justifyContent="space-between" mb={3}>
         <Box display="flex">
           <FilterButton />
-          <SortButton />
+          {!isListView && <SortButton />}
         </Box>
 
         <Box display="flex" alignItems="center">

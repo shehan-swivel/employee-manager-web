@@ -4,13 +4,13 @@ export type Gender = {
 };
 
 export type Employee = {
-  _id: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: string;
   gender: string;
-  photo: string;
+  photo?: string;
 };
 
 export type TableHeaderCell = {
