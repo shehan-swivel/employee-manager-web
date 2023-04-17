@@ -1,6 +1,6 @@
 import EmployeeGrid from "@/components/EmployeeGrid";
 import EmployeeList from "@/components/EmployeeList";
-import FilterButton from "@/components/FilterButton";
+import FilterBar from "@/components/FilterBar";
 import RoundedButton from "@/components/RoundedButton";
 import SortButton from "@/components/SortButton";
 import useAppDispatch from "@/hooks/useAppDispatch";
@@ -8,12 +8,15 @@ import useAppSelector from "@/hooks/useAppSelector";
 import { wrapper } from "@/store";
 import { getEmployees } from "@/store/slices/employeeSlice";
 import AppsIcon from "@mui/icons-material/Apps";
+import ExpandLessTwoToneIcon from "@mui/icons-material/ExpandLessTwoTone";
+import ExpandMoreTwoToneIcon from "@mui/icons-material/ExpandMoreTwoTone";
+import FilterAltTwoToneIcon from "@mui/icons-material/FilterAltTwoTone";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { Fab } from "@mui/material";
+import { Avatar, Collapse, Fab, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const EmployeeHome = () => {
   const router = useRouter();
@@ -23,6 +26,7 @@ const EmployeeHome = () => {
   const { firstName, lastName, email, gender, phoneNumber, order, orderBy } = query;
 
   const [isListView, setIsListView] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
   const changeLayout = () => {
     setIsListView(!isListView);
@@ -40,6 +44,10 @@ const EmployeeHome = () => {
     }
   };
 
+  const filtersCount = useMemo(() => {
+    return Object.entries(query).filter(([key, value]) => key !== "orderBy" && key !== "order" && value).length;
+  }, [query]);
+
   useEffect(() => {
     // If changed sorting parameters, fetch sorted data from the server
     dispatch(getEmployees({ firstName, lastName, email, gender, phoneNumber, orderBy, order }));
@@ -52,9 +60,17 @@ const EmployeeHome = () => {
         <title>Employee Manager | Home</title>
       </Head>
 
-      <Box display="flex" justifyContent="space-between" mb={3}>
-        <Box display="flex">
-          <FilterButton />
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+        <Box display="flex" alignItems="center">
+          <RoundedButton
+            variant="contained"
+            startIcon={<FilterButtonStartIcon count={filtersCount} />}
+            endIcon={showFilters ? <ExpandLessTwoToneIcon /> : <ExpandMoreTwoToneIcon />}
+            color="secondary"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            Filter
+          </RoundedButton>
           {!isListView && <SortButton />}
         </Box>
 
@@ -68,9 +84,29 @@ const EmployeeHome = () => {
         </Box>
       </Box>
 
+      <Collapse in={showFilters} sx={{ height: showFilters ? "auto" : "0px" }}>
+        <FilterBar />
+      </Collapse>
+
       {renderContent()}
     </>
   );
+};
+
+const FilterButtonStartIcon = ({ count }: { count: number }) => {
+  const theme = useTheme();
+
+  if (count) {
+    return (
+      <Avatar sx={{ width: 20, height: 20, bgcolor: theme.palette.common.white }}>
+        <Typography variant="button" sx={{ color: theme.palette.secondary.main }}>
+          {count}
+        </Typography>
+      </Avatar>
+    );
+  } else {
+    return <FilterAltTwoToneIcon />;
+  }
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {

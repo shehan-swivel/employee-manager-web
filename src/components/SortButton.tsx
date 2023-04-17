@@ -7,7 +7,6 @@ import SortTwoToneIcon from "@mui/icons-material/SortTwoTone";
 import { Box, ButtonGroup, MenuItem, MenuList, Popover } from "@mui/material";
 import { MouseEvent, useMemo, useRef, useState } from "react";
 import RoundedButton from "./RoundedButton";
-import { blue } from "@mui/material/colors";
 
 const SortButton = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +31,7 @@ const SortButton = () => {
   };
 
   const handleMenuItemClick = (value: string) => {
-    dispatch(updateQuery({ ...query, orderBy: value }));
+    dispatch(updateQuery({ ...query, orderBy: value, order: order || "asc" }));
     handleClose();
   };
 
@@ -52,7 +51,13 @@ const SortButton = () => {
 
   return (
     <Box ml={3}>
-      <ButtonGroup variant="outlined" ref={anchorRef} aria-label="split button" sx={{ borderRadius: 50 }}>
+      <ButtonGroup
+        variant="contained"
+        color="secondary"
+        ref={anchorRef}
+        aria-label="split button"
+        sx={{ borderRadius: 50 }}
+      >
         <RoundedButton
           aria-controls={open ? "split-button-menu" : undefined}
           aria-expanded={open ? "true" : undefined}
@@ -65,11 +70,10 @@ const SortButton = () => {
         </RoundedButton>
         {!!orderBy && (
           <RoundedButton onClick={toggleSortDirection}>
-            {order === "asc" ? (
-              <ArrowUpwardTwoToneIcon fontSize="small" />
-            ) : (
-              <ArrowDownwardTwoToneIcon fontSize="small" />
-            )}
+            <>
+              <ArrowUpwardTwoToneIcon fontSize="small" color={order === "asc" ? "inherit" : "disabled"} />
+              <ArrowDownwardTwoToneIcon fontSize="small" color={order === "asc" ? "disabled" : "inherit"} />
+            </>
           </RoundedButton>
         )}
       </ButtonGroup>
@@ -90,7 +94,7 @@ const SortButton = () => {
           <MenuItem key="default" selected={orderBy === ""} onClick={() => handleMenuItemClick("")}>
             Sort by (Default)
           </MenuItem>
-          {orderByOptions.map((option, index) => (
+          {orderByOptions.map((option) => (
             <MenuItem
               key={option.value}
               selected={orderBy === option.value}
