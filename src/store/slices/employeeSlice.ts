@@ -45,9 +45,7 @@ export const createEmployee = createAsyncThunk("employees/createEmployee", async
 });
 
 export const getEmployeeById = createAsyncThunk("employees/getEmployeeById", async (id: string) => {
-  console.log("dfsdgfdfg");
   const response = await employeeService.getEmployeeById(id);
-  console.log(response.data);
   return response.data;
 });
 
@@ -58,6 +56,11 @@ export const updateEmployee = createAsyncThunk(
     return response.data;
   }
 );
+
+export const deleteEmployee = createAsyncThunk("employees/deleteEmployee", async (id: string) => {
+  await employeeService.deleteEmployee(id);
+  return id;
+});
 
 const employeeSlice = createSlice({
   name: "employees",
@@ -125,6 +128,10 @@ const employeeSlice = createSlice({
     builder.addCase(updateEmployee.rejected, (state) => {
       state.submit.loading = false;
       state.submit.success = false;
+    });
+
+    builder.addCase(deleteEmployee.fulfilled, (state, { payload }) => {
+      state.all.data = state.all.data.filter((el) => el._id !== payload);
     });
   },
 });

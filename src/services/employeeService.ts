@@ -8,6 +8,7 @@ export const employeeService = {
   createEmployee,
   getEmployeeById,
   updateEmployee,
+  deleteEmployee,
 };
 
 function getEmployees(queryParams: EmployeeQuery) {
@@ -25,4 +26,8 @@ function getEmployeeById(id: string) {
 
 function updateEmployee(id: string, data: Employee) {
   return apiService.put(`${PREFIX}/${id}`, data);
+}
+
+function deleteEmployee(id: string) {
+  return apiService.delete(`${PREFIX}/${id}`);
 }

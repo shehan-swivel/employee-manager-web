@@ -1,5 +1,8 @@
-import { Employee, Gender, TableHeaderCell } from "@/types";
 import { DEFAULT_IMAGE, GENDER } from "@/constants";
+import useAppDispatch from "@/hooks/useAppDispatch";
+import useConfirm from "@/hooks/useConfirm";
+import { deleteEmployee } from "@/store/slices/employeeSlice";
+import { Employee, Gender, TableHeaderCell } from "@/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { useRouter } from "next/router";
@@ -44,6 +47,16 @@ const headerCells: TableHeaderCell[] = [
 
 const EmployeeList = ({ employees }: employeeListProps) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { confirm } = useConfirm();
+
+  const confirmDelete = async (id: string) => {
+    const isConfirmed = await confirm("Are you sure you want to delete this record ?");
+
+    if (isConfirmed) {
+      dispatch(deleteEmployee(id));
+    }
+  };
 
   const navigateToEditScreen = (id: string) => {
     router.push(`/employee/edit/${id}`);
@@ -72,11 +85,11 @@ const EmployeeList = ({ employees }: employeeListProps) => {
                     color="success"
                     size="small"
                     sx={{ mr: 1 }}
-                    onClick={() => navigateToEditScreen(row._id)}
+                    onClick={() => navigateToEditScreen(row._id as string)}
                   >
                     Edit
                   </Button>
-                  <IconButton color="error">
+                  <IconButton color="error" onClick={() => confirmDelete(row._id as string)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>

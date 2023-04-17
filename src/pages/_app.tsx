@@ -1,14 +1,16 @@
+import ConfirmationDialog from "@/components/ConfirmationDialog";
 import createEmotionCache from "@/config/createEmotionCache";
 import theme from "@/config/theme";
+import { ConfirmProvider } from "@/contexts/ConfirmContext";
 import Layout from "@/layouts/Layout";
 import { wrapper } from "@/store";
 import { CacheProvider } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { Provider } from "react-redux";
 
 import "@/styles/globals.css";
-import Head from "next/head";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,11 +29,13 @@ export default function App({ Component, ...otherProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Provider store={store}>
-          <main>
+          <ConfirmProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </main>
+
+            <ConfirmationDialog />
+          </ConfirmProvider>
         </Provider>
       </ThemeProvider>
     </CacheProvider>
