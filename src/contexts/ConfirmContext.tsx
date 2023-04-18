@@ -1,6 +1,6 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { ReactNode, useMemo } from "react";
-import { createContext, useReducer } from "react";
+import { useMemo, createContext, useReducer } from "react";
+import type { ReactNode } from "react";
 
 const SHOW_CONFIRM = "SHOW_CONFIRM";
 const HIDE_CONFIRM = "HIDE_CONFIRM";
