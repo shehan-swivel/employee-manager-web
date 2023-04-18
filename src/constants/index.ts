@@ -9,4 +9,4 @@ export const VALIDATION_RULES = {
   EMAIL: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 };
 
-export const DEFAULT_IMAGE = "https://placehold.jp/30/707070/ffffff/180x180.png?text=image";
+export const DEFAULT_IMAGE = "https://via.placeholder.com/300x200?text=Image";

@@ -1,4 +1,5 @@
 import ConfirmationDialog from "@/components/ConfirmationDialog";
+import Snackbar from "@/components/Snackbar";
 import createEmotionCache from "@/config/createEmotionCache";
 import theme from "@/config/theme";
 import { ConfirmProvider } from "@/contexts/ConfirmContext";
@@ -35,6 +36,7 @@ export default function App({ Component, ...otherProps }: AppProps) {
             </Layout>
 
             <ConfirmationDialog />
+            <Snackbar />
           </ConfirmProvider>
         </Provider>
       </ThemeProvider>

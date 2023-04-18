@@ -2,6 +2,7 @@ import { employeeService } from "@/services";
 import { Employee, EmployeeQuery } from "@/types";
 import { AnyAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import { showSnackbar } from "./uiSlice";
 
 type EmployeeSlice = {
   all: { data: Employee[]; loading: boolean };
@@ -39,9 +40,15 @@ export const getEmployees = createAsyncThunk("employees/getEmployees", async (qu
   return response.data;
 });
 
-export const createEmployee = createAsyncThunk("employees/createEmployee", async (data: Employee) => {
-  const response = await employeeService.createEmployee(data);
-  return response.data;
+export const createEmployee = createAsyncThunk("employees/createEmployee", async (data: Employee, thunkAPI) => {
+  try {
+    const response = await employeeService.createEmployee(data);
+    thunkAPI.dispatch(showSnackbar({ message: response.data.message, severity: "success" }));
+    return response.data;
+  } catch (error: any) {
+    thunkAPI.dispatch(showSnackbar({ message: error.response.data.message, severity: "error" }));
+    throw error;
+  }
 });
 
 export const getEmployeeById = createAsyncThunk("employees/getEmployeeById", async (id: string) => {
@@ -51,15 +58,27 @@ export const getEmployeeById = createAsyncThunk("employees/getEmployeeById", asy
 
 export const updateEmployee = createAsyncThunk(
   "employees/updateEmployee",
-  async ({ id, data }: { id: string; data: Employee }) => {
-    const response = await employeeService.updateEmployee(id, data);
-    return response.data;
+  async ({ id, data }: { id: string; data: Employee }, thunkAPI) => {
+    try {
+      const response = await employeeService.updateEmployee(id, data);
+      thunkAPI.dispatch(showSnackbar({ message: response.data.message, severity: "success" }));
+      return response.data;
+    } catch (error: any) {
+      thunkAPI.dispatch(showSnackbar({ message: error.response.data.message, severity: "error" }));
+      throw error;
+    }
   }
 );
 
-export const deleteEmployee = createAsyncThunk("employees/deleteEmployee", async (id: string) => {
-  await employeeService.deleteEmployee(id);
-  return id;
+export const deleteEmployee = createAsyncThunk("employees/deleteEmployee", async (id: string, thunkAPI) => {
+  try {
+    const response = await employeeService.deleteEmployee(id);
+    thunkAPI.dispatch(showSnackbar({ message: response.data.message, severity: "success" }));
+    return id;
+  } catch (error: any) {
+    thunkAPI.dispatch(showSnackbar({ message: error.response.data.message, severity: "error" }));
+    throw error;
+  }
 });
 
 const employeeSlice = createSlice({
