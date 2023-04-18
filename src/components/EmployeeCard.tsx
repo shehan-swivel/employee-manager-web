@@ -4,8 +4,7 @@ import useConfirm from "@/hooks/useConfirm";
 import { Employee, Gender } from "@/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Card, CardContent, CardMedia, Fab, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Card, CardContent, CardMedia, Fab, Typography, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { deleteEmployee } from "@/store/slices/employeeSlice";
 

@@ -10,8 +10,8 @@ const EmployeeGrid = ({ employees }: employeeGridProps) => {
   if (employees?.length) {
     return (
       <Grid container spacing={4} data-testid="employee-grid">
-        {employees.map((emp, i) => (
-          <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
+        {employees.map((emp) => (
+          <Grid key={emp._id} item xs={12} sm={6} md={4} lg={3}>
             <EmployeeCard
               _id={emp._id}
               firstName={emp.firstName}

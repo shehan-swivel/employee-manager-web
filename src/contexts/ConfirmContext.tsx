@@ -1,5 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import type { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import { createContext, useReducer } from "react";
 
 const SHOW_CONFIRM = "SHOW_CONFIRM";
@@ -47,15 +47,15 @@ export const ConfirmProvider = ({ children }: { children: ReactNode }) => {
 
   const showConfirm = async (message: string) => {
     dispatch({ type: "SHOW_CONFIRM", payload: { message } });
-    return;
   };
 
   const hideConfirm = async () => {
     dispatch({ type: "HIDE_CONFIRM" });
-    return;
   };
 
-  return <ConfirmContext.Provider value={{ ...state, showConfirm, hideConfirm }}>{children}</ConfirmContext.Provider>;
+  const providerValue = useMemo(() => ({ ...state, showConfirm, hideConfirm }), [state]);
+
+  return <ConfirmContext.Provider value={providerValue}>{children}</ConfirmContext.Provider>;
 };
 
 export default ConfirmContext;

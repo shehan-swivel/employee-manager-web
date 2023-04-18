@@ -124,7 +124,6 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: employeeFormProps) =>
                   variant="filled"
                   {...field}
                   fullWidth
-                  type="email"
                   label="Email"
                   error={!!errors.email?.message}
                   helperText={errors.email?.message}
