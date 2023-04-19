@@ -19,10 +19,14 @@ describe("EditForm", () => {
     },
   };
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const mockStore = configureStore();
+  const store = mockStore(initialState);
 
   it("Edit Employee page title should be 'Edit Employee'", () => {
-    const store = mockStore(initialState);
     const { getByRole } = render(
       <Provider store={store}>
         <EditForm />
@@ -34,7 +38,6 @@ describe("EditForm", () => {
   });
 
   it("All the edit form elements should be in the Edit Employee page", () => {
-    const store = mockStore(initialState);
     const { getByRole, getByLabelText } = render(
       <Provider store={store}>
         <EditForm />

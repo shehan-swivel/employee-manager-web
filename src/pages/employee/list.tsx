@@ -63,7 +63,7 @@ const EmployeeHome = () => {
       </Head>
 
       <Grid container justifyContent="space-between" mb={3} rowSpacing={3}>
-        <Grid item xs={12} md={6} display="flex" alignItems="center" order={{ xs: 2, md: 1 }}>
+        <Grid item xs={12} sm={8} md={6} display="flex" alignItems="center" order={{ xs: 2, sm: 1 }}>
           <RoundedButton
             variant="contained"
             startIcon={<FilterButtonStartIcon count={filtersCount} />}
@@ -77,7 +77,16 @@ const EmployeeHome = () => {
           </RoundedButton>
           {!isListView && <SortButton />}
         </Grid>
-        <Grid item xs={12} md={6} display="flex" alignItems="center" justifyContent="flex-end" order={{ xs: 1, md: 2 }}>
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          md={6}
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-end"
+          order={{ xs: 1, sm: 2 }}
+        >
           <RoundedButton variant="contained" sx={{ mr: 2 }} onClick={navigateToAddScreen}>
             Add Employee
           </RoundedButton>

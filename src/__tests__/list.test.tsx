@@ -28,11 +28,52 @@ describe("EmployeeHome", () => {
     },
   };
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const mockStore = configureStore(middlewares);
+  const store = mockStore(initialState);
+
+  it("'Filter' button should be in the Employee Home page", () => {
+    const { getByRole } = render(
+      <Provider store={store}>
+        <EmployeeHome />
+      </Provider>
+    );
+
+    const filterBtn = getByRole("button", { name: "Filter" });
+    expect(filterBtn).toBeTruthy();
+  });
+
+  describe("'Sort by' button", () => {
+    it("should be visible when page is in Grid View", () => {
+      const { findByRole } = render(
+        <Provider store={store}>
+          <EmployeeHome />
+        </Provider>
+      );
+
+      const sortBtn = findByRole("group", { name: "split button" });
+      expect(sortBtn).toBeTruthy();
+    });
+
+    it("should not be visible when page is in List View", () => {
+      const { queryByRole, getByTitle } = render(
+        <Provider store={store}>
+          <EmployeeHome />
+        </Provider>
+      );
+
+      const layoutSwitchBtn = getByTitle("Switch Layout");
+      fireEvent.click(layoutSwitchBtn);
+
+      const sortBtn = queryByRole("group", { name: "split button" });
+      expect(sortBtn).toBeFalsy();
+    });
+  });
 
   it("'Add Employee' button should be in the Employee Home page", () => {
-    const store = mockStore(initialState);
-
     const { getByRole } = render(
       <Provider store={store}>
         <EmployeeHome />
@@ -44,7 +85,6 @@ describe("EmployeeHome", () => {
   });
 
   it("Layout switch button should be in the Employee Home page", () => {
-    const store = mockStore(initialState);
     const { getByTitle } = render(
       <Provider store={store}>
         <EmployeeHome />
@@ -55,11 +95,10 @@ describe("EmployeeHome", () => {
     expect(layoutSwitchBtn).toBeTruthy();
   });
 
-  it("Layout should change when switch layout button is clicked", () => {
+  it("Layout should change from Grid View to List View when switch layout button is clicked", () => {
     const newState = { ...initialState };
     newState.employees.all.data.push({ _id: "1", firstName: "", lastName: "", email: "", phoneNumber: "", gender: "" });
 
-    const store = mockStore(newState);
     const { getByTitle, getByLabelText, getByTestId } = render(
       <Provider store={store}>
         <EmployeeHome />
