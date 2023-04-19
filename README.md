@@ -1,26 +1,75 @@
+# Employee Manager Web
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Clone the repository
 
-First, run the development server:
+```bash
+$ git clone https://github.com/shehanswivel/employee-manager-web.git
+```
+
+## Installation
+
+```bash
+$ npm install
+# or
+$ yarn install
+```
+
+## Environment variables
+
+```bash
+# REST API base URL
+NEXT_PUBLIC_BASE_URL=<https://your-rest-api.com>
+```
+
+## Running the app
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Test
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+# unit tests
+$ npm test
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+src/            # Source folder
+  __tests__/    # Contains all the app test files
+  components/   # Contains all the app components
+  config/       # Contains app configurations
+  constants/    # Contains all the constants
+  contexts/     # Contains all the context providers
+  hooks/        # Contains all the custom hooks
+  layouts/      # Contains all the app layouts
+  pages/        # Contains all the pages
+    employee/       
+  services/     # Contains all the service files
+  store/        # Contains redux store and slices
+    /slices     # Contains redux slices    
+  styles/       # Contains all the style files
+  types/        # Contains all the custom types
+test/
+.env.development
+.env.production
+.eslintrc.json
+.gitignore
+jest.config.js
+next.config.js
+package-lock.json
+package.json
+README.md
+tsconfig.json
+```
 
 ## Learn More
 
