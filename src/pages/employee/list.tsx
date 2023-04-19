@@ -13,12 +13,15 @@ import ExpandLessTwoToneIcon from "@mui/icons-material/ExpandLessTwoTone";
 import ExpandMoreTwoToneIcon from "@mui/icons-material/ExpandMoreTwoTone";
 import FilterAltTwoToneIcon from "@mui/icons-material/FilterAltTwoTone";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { Avatar, Box, Collapse, Fab, Typography, useTheme } from "@mui/material";
+import { Avatar, Collapse, Fab, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 
 const EmployeeHome = () => {
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const router = useRouter();
   const dispatch = useAppDispatch();
   const employees = useAppSelector((state) => state.employees.all.data);
@@ -59,29 +62,30 @@ const EmployeeHome = () => {
         <title>Employee Manager | Home</title>
       </Head>
 
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Box display="flex" alignItems="center">
+      <Grid container justifyContent="space-between" mb={3} rowSpacing={3}>
+        <Grid item xs={12} md={6} display="flex" alignItems="center" order={{ xs: 2, md: 1 }}>
           <RoundedButton
             variant="contained"
             startIcon={<FilterButtonStartIcon count={filtersCount} />}
             endIcon={showFilters ? <ExpandLessTwoToneIcon /> : <ExpandMoreTwoToneIcon />}
             color="secondary"
+            size={isMobileScreen ? "small" : "medium"}
+            sx={{ mr: 2 }}
             onClick={() => setShowFilters(!showFilters)}
           >
             Filter
           </RoundedButton>
           {!isListView && <SortButton />}
-        </Box>
-
-        <Box display="flex" alignItems="center">
+        </Grid>
+        <Grid item xs={12} md={6} display="flex" alignItems="center" justifyContent="flex-end" order={{ xs: 1, md: 2 }}>
           <RoundedButton variant="contained" sx={{ mr: 2 }} onClick={navigateToAddScreen}>
             Add Employee
           </RoundedButton>
           <Fab color="primary" size="small" onClick={changeLayout} title="Switch Layout">
             {isListView ? <AppsIcon /> : <ViewListIcon />}
           </Fab>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
 
       <Collapse in={showFilters} sx={{ height: showFilters ? "auto" : "0px" }}>
         <FilterBar />

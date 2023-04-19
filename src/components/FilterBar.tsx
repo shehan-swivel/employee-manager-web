@@ -57,6 +57,7 @@ const FilterBar = () => {
             size="small"
             value={lastName}
             fullWidth
+            placeholder="Search..."
             onChange={(e) => handleOnChange(e, "lastName")}
           />
         </Grid>
@@ -68,6 +69,7 @@ const FilterBar = () => {
             size="small"
             value={email}
             fullWidth
+            placeholder="Search..."
             onChange={(e) => handleOnChange(e, "email")}
           />
         </Grid>
@@ -79,6 +81,7 @@ const FilterBar = () => {
             size="small"
             value={phoneNumber}
             fullWidth
+            placeholder="Search..."
             onChange={(e) => handleOnChange(e, "phoneNumber")}
           />
         </Grid>
@@ -91,6 +94,7 @@ const FilterBar = () => {
               label="Gender"
               value={gender}
               fullWidth
+              placeholder="Select"
               onChange={(e) => handleOnChange(e, "gender")}
             >
               <MenuItem value="">

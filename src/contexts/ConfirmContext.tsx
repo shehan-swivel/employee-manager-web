@@ -10,7 +10,7 @@ type ConfirmContextState = {
   message: string;
 };
 
-type ConfirmContext = ConfirmContextState & {
+type ConfirmContextType = ConfirmContextState & {
   showConfirm: (message: string) => void;
   hideConfirm: () => void;
 };
@@ -36,7 +36,7 @@ export const reducer = (state: ConfirmContextState, action: AnyAction) => {
   }
 };
 
-const ConfirmContext = createContext<ConfirmContext>({
+const ConfirmContext = createContext<ConfirmContextType>({
   ...initialState,
   showConfirm: () => {},
   hideConfirm: () => {},

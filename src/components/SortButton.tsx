@@ -4,11 +4,14 @@ import { updateQuery } from "@/store/slices/employeeSlice";
 import ArrowDownwardTwoToneIcon from "@mui/icons-material/ArrowDownwardTwoTone";
 import ArrowUpwardTwoToneIcon from "@mui/icons-material/ArrowUpwardTwoTone";
 import SortTwoToneIcon from "@mui/icons-material/SortTwoTone";
-import { Box, ButtonGroup, MenuItem, MenuList, Popover } from "@mui/material";
+import { Box, ButtonGroup, MenuItem, MenuList, Popover, useMediaQuery, useTheme } from "@mui/material";
 import { MouseEvent, useMemo, useRef, useState } from "react";
 import RoundedButton from "./RoundedButton";
 
 const SortButton = () => {
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const dispatch = useAppDispatch();
   const query = useAppSelector((store) => store.employees.query);
 
@@ -50,12 +53,13 @@ const SortButton = () => {
   }, [orderBy]);
 
   return (
-    <Box ml={3}>
+    <Box>
       <ButtonGroup
         variant="contained"
         color="secondary"
         ref={anchorRef}
         aria-label="split button"
+        size={isMobileScreen ? "small" : "medium"}
         sx={{ borderRadius: 50 }}
       >
         <RoundedButton
