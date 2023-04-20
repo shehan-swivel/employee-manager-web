@@ -58,4 +58,15 @@ describe("EditForm", () => {
     expect(genderSelect).toBeTruthy();
     expect(addBtn).toBeTruthy();
   });
+
+  it("Form's submit button label should be 'Add'", () => {
+    const { container } = render(
+      <Provider store={store}>
+        <EditForm />
+      </Provider>
+    );
+
+    const submitButton = container.querySelector("#employee-form-submit-btn");
+    expect(submitButton).toHaveTextContent("Save");
+  });
 });

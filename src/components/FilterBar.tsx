@@ -36,7 +36,7 @@ const FilterBar = () => {
   };
 
   return (
-    <Paper sx={{ mb: 3, p: 2, backgroundColor: grey["200"] }} elevation={0}>
+    <Paper sx={{ mb: 3, p: 2, backgroundColor: grey["200"] }} elevation={0} data-testid="filter-bar">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={4} lg={2}>
           <TextField

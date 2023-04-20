@@ -46,6 +46,41 @@ describe("EmployeeHome", () => {
     expect(filterBtn).toBeTruthy();
   });
 
+  it("Filtering inputs and Clear Filters button should be in the Employee Home page", () => {
+    const { container } = render(
+      <Provider store={store}>
+        <EmployeeHome />
+      </Provider>
+    );
+
+    const firstNameInput = container.querySelector("#first-name-filter");
+    const lastNameInput = container.querySelector("#last-name-filter");
+    const emailInput = container.querySelector("#email-filter");
+    const phoneNumberInput = container.querySelector("#phone-number-filter");
+    const genderSelect = container.querySelector("#gender-filter");
+
+    expect(firstNameInput).toBeTruthy();
+    expect(lastNameInput).toBeTruthy();
+    expect(emailInput).toBeTruthy();
+    expect(phoneNumberInput).toBeTruthy();
+    expect(genderSelect).toBeTruthy();
+  });
+
+  it("Filtering inputs visibility should be handled by Filter button click", () => {
+    const { getByRole, container, getByTestId } = render(
+      <Provider store={store}>
+        <EmployeeHome />
+      </Provider>
+    );
+
+    const filterBtn = getByRole("button", { name: "Filter" });
+    const filterBar = getByTestId("filter-bar");
+
+    expect(filterBar).not.toBeVisible();
+    fireEvent.click(filterBtn);
+    expect(filterBar).toBeVisible();
+  });
+
   describe("'Sort by' button", () => {
     it("should be visible when page is in Grid View", () => {
       const { findByRole } = render(
