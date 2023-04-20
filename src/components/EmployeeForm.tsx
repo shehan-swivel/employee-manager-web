@@ -171,7 +171,13 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: EmployeeFormProps) =>
             />
 
             <Box display="flex" justifyContent="flex-end">
-              <RoundedButton type="submit" variant="contained" disabled={isSubmitting} sx={{ mt: 3, width: 100 }}>
+              <RoundedButton
+                id="employee-form-submit-btn"
+                type="submit"
+                variant="contained"
+                disabled={isSubmitting}
+                sx={{ mt: 3, width: 100 }}
+              >
                 {isSubmitting ? <SpinnerIcon /> : buttonLabel}
               </RoundedButton>
             </Box>

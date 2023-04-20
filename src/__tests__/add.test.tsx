@@ -70,6 +70,17 @@ describe("AddForm", () => {
     expect(addBtn).toBeTruthy();
   });
 
+  it("Form's submit button label should be 'Add'", () => {
+    const { container } = render(
+      <Provider store={store}>
+        <AddForm />
+      </Provider>
+    );
+
+    const submitButton = container.querySelector("#employee-form-submit-btn");
+    expect(submitButton).toHaveTextContent("Add");
+  });
+
   describe("Validation should failed", () => {
     let firstNameInput: HTMLElement,
       lastNameInput: HTMLElement,
