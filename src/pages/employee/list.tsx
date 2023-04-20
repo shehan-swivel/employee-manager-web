@@ -71,6 +71,7 @@ const EmployeeHome = () => {
             color="secondary"
             size={isMobileScreen ? "small" : "medium"}
             sx={{ mr: 2 }}
+            title="Filter"
             onClick={() => setShowFilters(!showFilters)}
           >
             Filter
@@ -87,7 +88,7 @@ const EmployeeHome = () => {
           justifyContent="flex-end"
           order={{ xs: 1, sm: 2 }}
         >
-          <RoundedButton variant="contained" sx={{ mr: 2 }} onClick={navigateToAddScreen}>
+          <RoundedButton variant="contained" sx={{ mr: 2 }} onClick={navigateToAddScreen} title="Add Employee">
             Add Employee
           </RoundedButton>
           <Fab color="primary" size="small" onClick={changeLayout} title="Switch Layout">

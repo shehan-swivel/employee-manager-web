@@ -67,13 +67,14 @@ const SortButton = () => {
           aria-expanded={open ? "true" : undefined}
           aria-label="select filter property"
           aria-haspopup="menu"
+          title="Sort by"
           startIcon={<SortTwoToneIcon />}
           onClick={handleClick}
         >
           {orderBy ? `Sort by : ${orderByText}` : "Sort by (Default)"}
         </RoundedButton>
         {!!orderBy && (
-          <RoundedButton onClick={toggleSortDirection}>
+          <RoundedButton onClick={toggleSortDirection} title="Sort direction">
             <>
               <ArrowUpwardTwoToneIcon fontSize="small" color={order === "asc" ? "inherit" : "disabled"} />
               <ArrowDownwardTwoToneIcon fontSize="small" color={order === "asc" ? "disabled" : "inherit"} />
