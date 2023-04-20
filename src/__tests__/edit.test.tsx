@@ -59,7 +59,7 @@ describe("EditForm", () => {
     expect(addBtn).toBeTruthy();
   });
 
-  it("Form's submit button label should be 'Add'", () => {
+  it("Form's submit button label should be 'Save'", () => {
     const { container } = render(
       <Provider store={store}>
         <EditForm />
