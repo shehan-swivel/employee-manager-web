@@ -21,7 +21,7 @@ import * as yup from "yup";
 import RoundedButton from "./RoundedButton";
 import SpinnerIcon from "./SpinnerIcon";
 
-type employeeFormProps = {
+type EmployeeFormProps = {
   isEdit: boolean;
   defaultValues: Employee;
   onSubmit: SubmitHandler<Employee>;
@@ -47,7 +47,7 @@ const schema = yup.object().shape({
   gender: yup.string(),
 });
 
-const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: employeeFormProps) => {
+const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: EmployeeFormProps) => {
   const {
     control,
     handleSubmit,

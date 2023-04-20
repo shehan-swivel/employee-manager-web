@@ -5,10 +5,12 @@ import { deleteEmployee } from "@/store/slices/employeeSlice";
 import { Employee, Gender, TableHeaderCell } from "@/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import EmptyResult from "./EmptyResult";
 import EnhancedTableHead from "./EnhancedTableHead";
 
-type employeeListProps = {
+type EmployeeListProps = {
   employees: Employee[];
 };
 
@@ -45,7 +47,7 @@ const headerCells: TableHeaderCell[] = [
   },
 ];
 
-const EmployeeList = ({ employees }: employeeListProps) => {
+const EmployeeList = ({ employees }: EmployeeListProps) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { confirm } = useConfirm();
@@ -72,7 +74,7 @@ const EmployeeList = ({ employees }: employeeListProps) => {
             {employees.map((row) => (
               <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell>
-                  <img src={row.photo || DEFAULT_IMAGE} alt="profile photo" loading="lazy" height={60} width={60} />
+                  <Image src={row.photo || DEFAULT_IMAGE} alt="profile photo" loading="lazy" height={60} width={60} />
                 </TableCell>
                 <TableCell>{row.firstName}</TableCell>
                 <TableCell>{row.lastName}</TableCell>
@@ -100,7 +102,7 @@ const EmployeeList = ({ employees }: employeeListProps) => {
       </TableContainer>
     );
   } else {
-    return null;
+    return <EmptyResult />;
   }
 };
 
