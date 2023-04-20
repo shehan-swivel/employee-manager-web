@@ -67,7 +67,7 @@ describe("EmployeeHome", () => {
   });
 
   it("Filtering inputs visibility should be handled by Filter button click", () => {
-    const { getByRole, container, getByTestId } = render(
+    const { getByRole, getByTestId } = render(
       <Provider store={store}>
         <EmployeeHome />
       </Provider>
