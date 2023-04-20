@@ -5,11 +5,11 @@ import { TableHeaderCell } from "@/types";
 import { Box, SortDirection, TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 
-type enhancedTableHeadProps = {
+type EnhancedTableHeadProps = {
   headerCells: TableHeaderCell[];
 };
 
-const EnhancedTableHead = ({ headerCells }: enhancedTableHeadProps) => {
+const EnhancedTableHead = ({ headerCells }: EnhancedTableHeadProps) => {
   const dispatch = useAppDispatch();
   const query = useAppSelector((state) => state.employees.query);
   const { order, orderBy } = query;

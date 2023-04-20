@@ -1,12 +1,13 @@
+import { Employee } from "@/types";
 import { Grid } from "@mui/material";
 import EmployeeCard from "./EmployeeCard";
-import { Employee } from "@/types";
+import EmptyResult from "./EmptyResult";
 
-type employeeGridProps = {
+type EmployeeGridProps = {
   employees: Employee[];
 };
 
-const EmployeeGrid = ({ employees }: employeeGridProps) => {
+const EmployeeGrid = ({ employees }: EmployeeGridProps) => {
   if (employees?.length) {
     return (
       <Grid container spacing={4} data-testid="employee-grid">
@@ -26,7 +27,7 @@ const EmployeeGrid = ({ employees }: employeeGridProps) => {
       </Grid>
     );
   } else {
-    return null;
+    return <EmptyResult />;
   }
 };
 

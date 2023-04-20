@@ -4,11 +4,11 @@ import styles from "@/styles/Layout.module.css";
 import { Container } from "@mui/material";
 import type { ReactNode } from "react";
 
-type layoutProps = {
+type LayoutProps = {
   children: ReactNode;
 };
 
-const Layout = ({ children }: layoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Navbar />

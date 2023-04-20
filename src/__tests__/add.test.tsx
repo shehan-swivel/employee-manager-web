@@ -7,7 +7,6 @@ import thunk from "redux-thunk";
 
 const middlewares = [thunk];
 
-jest.mock("axios");
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("AddForm", () => {
