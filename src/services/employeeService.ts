@@ -1,7 +1,7 @@
 import { Employee, EmployeeQuery } from "@/types";
 import apiService from "./apiService";
 
-const PREFIX = "/employees";
+const PREFIX = "/v1/employees";
 
 export const employeeService = {
   getEmployees,
