@@ -74,7 +74,7 @@ const EmployeeList = ({ employees }: EmployeeListProps) => {
             {employees.map((row) => (
               <TableRow key={row._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell>
-                  <Image src={row.photo || DEFAULT_IMAGE} alt="profile photo" loading="lazy" height={60} width={60} />
+                  <Image src={row.photo ?? DEFAULT_IMAGE} alt="profile photo" loading="lazy" height={60} width={60} />
                 </TableCell>
                 <TableCell>{row.firstName}</TableCell>
                 <TableCell>{row.lastName}</TableCell>

@@ -27,7 +27,7 @@ const EmployeeCard = ({ _id, firstName, lastName, email, phoneNumber, gender, ph
 
   return (
     <Card elevation={3}>
-      <CardMedia sx={{ height: 180 }} image={photo || DEFAULT_IMAGE} />
+      <CardMedia sx={{ height: 180 }} image={photo ?? DEFAULT_IMAGE} />
       <CardContent>
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>{`${firstName} ${lastName}`}</Typography>
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
