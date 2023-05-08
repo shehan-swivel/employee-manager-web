@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Footer from "@/components/organisms/Footer";
+import Navbar from "@/components/organisms/Navbar";
 import styles from "@/styles/Layout.module.css";
 import { Container } from "@mui/material";
 import type { ReactNode } from "react";

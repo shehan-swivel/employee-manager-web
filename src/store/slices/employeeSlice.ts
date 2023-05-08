@@ -90,11 +90,13 @@ const employeeSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Hydration between server and client side to maintain the updated state
     builder.addCase(HYDRATE, (state, action: AnyAction) => {
       state.all = action.payload.employees?.all;
       state.selected = action.payload.employees?.selected;
     });
 
+    // Get employees reducers
     builder.addCase(getEmployees.pending, (state) => {
       state.all.loading = true;
     });
@@ -106,6 +108,7 @@ const employeeSlice = createSlice({
       state.all.loading = false;
     });
 
+    // Create employee reducers
     builder.addCase(createEmployee.pending, (state) => {
       state.submit.loading = true;
       state.submit.success = false;
@@ -120,6 +123,7 @@ const employeeSlice = createSlice({
       state.submit.success = false;
     });
 
+    // Get employee by id reducers
     builder.addCase(getEmployeeById.pending, (state) => {
       state.selected.loading = true;
     });
@@ -131,6 +135,7 @@ const employeeSlice = createSlice({
       state.selected.loading = false;
     });
 
+    // Update employee reducers
     builder.addCase(updateEmployee.pending, (state) => {
       state.submit.loading = true;
       state.submit.success = false;
@@ -149,6 +154,7 @@ const employeeSlice = createSlice({
       state.submit.success = false;
     });
 
+    // Delete employee reducers
     builder.addCase(deleteEmployee.fulfilled, (state, { payload }) => {
       state.all.data = state.all.data.filter((el) => el._id !== payload);
     });

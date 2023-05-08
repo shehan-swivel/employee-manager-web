@@ -18,8 +18,8 @@ import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
-import RoundedButton from "./RoundedButton";
-import SpinnerIcon from "./SpinnerIcon";
+import RoundedButton from "../atoms/RoundedButton";
+import SpinnerIcon from "../atoms/SpinnerIcon";
 
 type EmployeeFormProps = {
   isEdit: boolean;

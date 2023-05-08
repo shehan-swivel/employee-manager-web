@@ -1,9 +1,9 @@
-import ConfirmationDialog from "@/components/ConfirmationDialog";
-import Snackbar from "@/components/Snackbar";
+import ConfirmationDialog from "@/components/organisms/ConfirmationDialog";
+import Snackbar from "@/components/organisms/Snackbar";
 import createEmotionCache from "@/config/createEmotionCache";
 import theme from "@/config/theme";
 import { ConfirmProvider } from "@/contexts/ConfirmContext";
-import Layout from "@/layouts/Layout";
+import Layout from "@/components/templates/Layout";
 import { wrapper } from "@/store";
 import { CacheProvider } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@mui/material";

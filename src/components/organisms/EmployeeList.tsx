@@ -7,8 +7,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import EmptyResult from "./EmptyResult";
-import EnhancedTableHead from "./EnhancedTableHead";
+import EmptyResult from "../molecules/EmptyResult";
+import EnhancedTableHead from "../molecules/EnhancedTableHead";
 
 type EmployeeListProps = {
   employees: Employee[];
