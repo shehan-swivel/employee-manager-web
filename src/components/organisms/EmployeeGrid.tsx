@@ -1,7 +1,7 @@
 import { Employee } from "@/types";
 import { Grid } from "@mui/material";
-import EmployeeCard from "./EmployeeCard";
-import EmptyResult from "./EmptyResult";
+import EmployeeCard from "../molecules/EmployeeCard";
+import EmptyResult from "../molecules/EmptyResult";
 
 type EmployeeGridProps = {
   employees: Employee[];

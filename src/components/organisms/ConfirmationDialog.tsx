@@ -1,6 +1,6 @@
 import ErrorTwoToneIcon from "@mui/icons-material/ErrorTwoTone";
 import { Box, Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import useConfirm from "../hooks/useConfirm";
+import useConfirm from "../../hooks/useConfirm";
 
 const ConfirmationDialog = () => {
   const { onConfirm, onCancel, show, message } = useConfirm();

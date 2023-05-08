@@ -1,4 +1,4 @@
-import EmployeeForm from "@/components/EmployeeForm";
+import EmployeeForm from "@/components/organisms/EmployeeForm";
 import useAppDispatch from "@/hooks/useAppDispatch";
 import useAppSelector from "@/hooks/useAppSelector";
 import { createEmployee } from "@/store/slices/employeeSlice";
