@@ -52,22 +52,32 @@ $ npm test
 
 ## Project structure
 
+This project follows the Atomic Design pattern for organizing components.
+
+[Atomic Design Methodology](https://atomicdesign.bradfrost.com/chapter-2) - learn more about the Atomic Design pattern
+
 ```bash
-src/            # Source folder
-  __tests__/    # Contains all the app test files
-  components/   # Contains all the app components
-  config/       # Contains app configurations
-  constants/    # Contains all the constants
-  contexts/     # Contains all the context providers
-  hooks/        # Contains all the custom hooks
-  layouts/      # Contains all the app layouts
-  pages/        # Contains all the pages
+src/              # Source folder
+  __tests__/      # Contains all the app test files
+  components/     # Contains all the app components
+    /atoms
+    /molecules
+    /organisms
+    /templates
+  config/         # Contains app configurations
+  constants/      # Contains all the constants
+  contexts/       # Contains all the context providers
+  hooks/          # Contains all the custom hooks
+  layouts/        # Contains all the app layouts
+  pages/          # Contains all the pages
     employee/
-  services/     # Contains all the service files
-  store/        # Contains redux store and slices
-    /slices     # Contains redux slices
-  styles/       # Contains all the style files
-  types/        # Contains all the custom types
+  services/       # Contains all the service files
+  store/          # Contains redux store and slices
+    /slices       # Contains redux slices
+  styles/         # Contains all the style files
+  types/          # Contains all the custom types
+  utils/          # Contains utility functions
+    /validations
 test/
 .env.example
 .eslintrc.json
