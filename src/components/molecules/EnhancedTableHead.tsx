@@ -14,6 +14,7 @@ const EnhancedTableHead = ({ headerCells }: EnhancedTableHeadProps) => {
   const query = useAppSelector((state) => state.employees.query);
   const { order, orderBy } = query;
 
+  // Update orderBy and order values when click on the table headers
   const createSortHandler = (property: string) => () => {
     const isAsc = orderBy === property && order === "asc";
     const updatedQuery = { ...query, orderBy: property, order: isAsc ? "desc" : "asc" };

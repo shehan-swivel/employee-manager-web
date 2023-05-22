@@ -6,16 +6,19 @@ let resolveCallback: (value: boolean) => void;
 const useConfirm = () => {
   const { showConfirm, hideConfirm, show, message } = useContext(ConfirmContext);
 
+  // Handle the event when click on the confirm button
   const onConfirm = () => {
     hideConfirm();
     resolveCallback(true);
   };
 
+  // Handle the event when click on the cancel button
   const onCancel = () => {
     hideConfirm();
     resolveCallback(false);
   };
 
+  // Show confirmation dialog
   const confirm = (msg: string) => {
     showConfirm(msg);
 

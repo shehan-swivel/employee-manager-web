@@ -23,6 +23,7 @@ const FilterBar = () => {
 
   const { firstName, lastName, email, phoneNumber, gender } = query;
 
+  // Update filter query when changing the filter inputs
   const handleOnChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent,
     field: keyof EmployeeQuery
@@ -30,6 +31,7 @@ const FilterBar = () => {
     dispatch(updateQuery({ ...query, [field]: event.target.value }));
   };
 
+  // Reset filters
   const clearFilters = () => {
     const defaultFilters = { firstName: "", lastName: "", email: "", phoneNumber: "", gender: "" };
     dispatch(updateQuery({ ...query, ...defaultFilters }));

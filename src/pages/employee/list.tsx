@@ -31,14 +31,17 @@ const EmployeeHome = () => {
   const [isListView, setIsListView] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
+  // Toggle page layout between grid view and list view
   const changeLayout = () => {
     setIsListView(!isListView);
   };
 
+  // Navigates to the employee add screen
   const navigateToAddScreen = () => {
     router.push("/employee/add");
   };
 
+  // Render the content according on the selected layout
   const renderContent = () => {
     if (isListView) {
       return <EmployeeList employees={employees} />;
@@ -47,6 +50,7 @@ const EmployeeHome = () => {
     }
   };
 
+  // Get the count that how many filters applied
   const filtersCount = useMemo(() => {
     return Object.entries(query).filter(([key, value]) => key !== "orderBy" && key !== "order" && value).length;
   }, [query]);

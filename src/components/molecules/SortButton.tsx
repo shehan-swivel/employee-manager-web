@@ -29,24 +29,29 @@ const SortButton = () => {
 
   const open = Boolean(anchorEl);
 
+  // Set anchor element for the Popover component
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
+  // Update the order by value
   const handleMenuItemClick = (value: string) => {
     dispatch(updateQuery({ ...query, orderBy: value, order: order || "asc" }));
     handleClose();
   };
 
+  // Set anchor element as null when close the popover
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  // Toggle sort direction and update the order value
   const toggleSortDirection = () => {
     const orderNewState = order === "asc" ? "desc" : "asc";
     dispatch(updateQuery({ ...query, order: orderNewState }));
   };
 
+  // Get the sort button's label when changing the orderBy value
   const orderByText = useMemo(() => {
     return orderByOptions.find((el) => el.value === orderBy)?.label;
     // eslint-disable-next-line react-hooks/exhaustive-deps

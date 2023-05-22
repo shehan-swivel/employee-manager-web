@@ -25,16 +25,20 @@ export default function App({ Component, ...otherProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(otherProps);
   const { emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  // Start to show top loading bar
   const handleRouteStart = () => NProgress.start();
 
+  // Finish and hide top loading bar
   const handleRouteDone = () => NProgress.done();
 
   useEffect(() => {
+    // Subscribe route change events when mount the app
     Router.events.on("routeChangeStart", handleRouteStart);
     Router.events.on("routeChangeComplete", handleRouteDone);
     Router.events.on("routeChangeError", handleRouteDone);
 
     return () => {
+      // Unsubscribe route change events when unmount the app
       Router.events.off("routeChangeStart", handleRouteStart);
       Router.events.off("routeChangeComplete", handleRouteDone);
       Router.events.off("routeChangeError", handleRouteDone);
