@@ -20,6 +20,7 @@ const EditForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Submit employee edit form
   const onSubmit = (data: Employee) => {
     setIsSubmitting(true);
     if (_id) {
@@ -28,6 +29,7 @@ const EditForm = () => {
   };
 
   useEffect(() => {
+    // Redirect to the employee list page when employee update process is completed
     if (isSubmitting && !submitState.loading && submitState.success) {
       router.push("/employee/list");
     }

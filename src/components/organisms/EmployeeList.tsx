@@ -52,6 +52,7 @@ const EmployeeList = ({ employees }: EmployeeListProps) => {
   const dispatch = useAppDispatch();
   const { confirm } = useConfirm();
 
+  // Get user confirmation before delete
   const confirmDelete = async (id: string) => {
     const isConfirmed = await confirm("Are you sure you want to delete this record ?");
 
@@ -60,6 +61,7 @@ const EmployeeList = ({ employees }: EmployeeListProps) => {
     }
   };
 
+  // Navigates to the employee edit screen
   const navigateToEditScreen = (id: string) => {
     router.push(`/employee/edit/${id}`);
   };

@@ -1,4 +1,4 @@
-import { GENDER, VALIDATION_RULES } from "@/constants";
+import { GENDER } from "@/constants";
 import useAppSelector from "@/hooks/useAppSelector";
 import { Employee } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,35 +17,15 @@ import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import * as yup from "yup";
 import RoundedButton from "../atoms/RoundedButton";
 import SpinnerIcon from "../atoms/SpinnerIcon";
+import { employeeFormSchema } from "@/utils/validations";
 
 type EmployeeFormProps = {
   isEdit: boolean;
   defaultValues: Employee;
   onSubmit: SubmitHandler<Employee>;
 };
-
-const schema = yup.object().shape({
-  firstName: yup
-    .string()
-    .required("First Name is required")
-    .matches(VALIDATION_RULES.ALPHABETS_ONLY, "First name must contains only alphabets")
-    .min(6, "First Name must be at least 6 characters")
-    .max(10, "First Name must be at most 10 characters"),
-  lastName: yup
-    .string()
-    .required("Last Name is required")
-    .matches(VALIDATION_RULES.ALPHABETS_ONLY, "Last name must contains only alphabets")
-    .min(6, "Last Name must be at least 6 characters")
-    .max(10, "Last Name must be at most 10 characters"),
-  email: yup.string().matches(VALIDATION_RULES.EMAIL, { message: "Invalid email address", excludeEmptyString: true }),
-  phoneNumber: yup
-    .string()
-    .matches(VALIDATION_RULES.LK_PHONE_NUMBERS, { message: "Invalid phone number", excludeEmptyString: true }),
-  gender: yup.string(),
-});
 
 const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: EmployeeFormProps) => {
   const {
@@ -54,16 +34,18 @@ const EmployeeForm = ({ isEdit, defaultValues, onSubmit }: EmployeeFormProps) =>
     formState: { errors },
   } = useForm<Employee>({
     defaultValues,
-    resolver: yupResolver(schema),
+    resolver: yupResolver(employeeFormSchema),
   });
 
   const router = useRouter();
   const isSubmitting = useAppSelector((state) => state.employees.submit.loading);
 
+  // Navigates to the home screen
   const navigateToHomeScreen = () => {
     router.push("/employee/list");
   };
 
+  // Set title, buttonLabel values based on the isEdit prop
   const [title, buttonLabel] = useMemo(() => {
     if (isEdit) {
       return ["Edit Employee", "Save"];

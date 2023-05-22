@@ -35,11 +35,13 @@ const initialState: EmployeeSlice = {
   },
 };
 
+// Get employees action
 export const getEmployees = createAsyncThunk("employees/getEmployees", async (queryParams: EmployeeQuery = {}) => {
   const response = await employeeService.getEmployees(queryParams);
   return response.data;
 });
 
+// Create employee action
 export const createEmployee = createAsyncThunk("employees/createEmployee", async (data: Employee, thunkAPI) => {
   try {
     const response = await employeeService.createEmployee(data);
@@ -51,11 +53,13 @@ export const createEmployee = createAsyncThunk("employees/createEmployee", async
   }
 });
 
+// Get employee by id action
 export const getEmployeeById = createAsyncThunk("employees/getEmployeeById", async (id: string) => {
   const response = await employeeService.getEmployeeById(id);
   return response.data;
 });
 
+// Update employee action
 export const updateEmployee = createAsyncThunk(
   "employees/updateEmployee",
   async ({ id, data }: { id: string; data: Employee }, thunkAPI) => {
@@ -70,6 +74,7 @@ export const updateEmployee = createAsyncThunk(
   }
 );
 
+// Delete employee action
 export const deleteEmployee = createAsyncThunk("employees/deleteEmployee", async (id: string, thunkAPI) => {
   try {
     const response = await employeeService.deleteEmployee(id);

@@ -18,9 +18,19 @@ $ yarn install
 
 ## Environment variables
 
+Make sure to create .env.local file in the project root with the variables that included in .env.example file.
+
+If you are using a separate development environment other than the local development environment, make sure to create .env.development file in the project root with the variables that included in .env.example file.
+
+To include production specific environment variable, create .env.production file in the project root with the variables that included in .env.example file.
+
+Learn more - https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables
+
 ```bash
 # REST API base URL
 NEXT_PUBLIC_BASE_URL=<https://your-rest-api.com>
+# API KEY
+NEXT_PUBLIC_API_KEY=<api-key>
 ```
 
 ## Running the app
@@ -52,15 +62,14 @@ src/            # Source folder
   hooks/        # Contains all the custom hooks
   layouts/      # Contains all the app layouts
   pages/        # Contains all the pages
-    employee/       
+    employee/
   services/     # Contains all the service files
   store/        # Contains redux store and slices
-    /slices     # Contains redux slices    
+    /slices     # Contains redux slices
   styles/       # Contains all the style files
   types/        # Contains all the custom types
 test/
-.env.development
-.env.production
+.env.example
 .eslintrc.json
 .gitignore
 jest.config.js

@@ -23,12 +23,14 @@ const AddForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Submit employee add form
   const onSubmit = (data: Employee) => {
     setIsSubmitting(true);
     dispatch(createEmployee(data));
   };
 
   useEffect(() => {
+    // Redirect to the employee list page when employee create process is completed
     if (isSubmitting && !submitState.loading && submitState.success) {
       router.push("/employee/list");
     }
